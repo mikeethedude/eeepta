@@ -1,0 +1,26 @@
+---
+import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elsa England Elementary PTA</title>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+    
+    <Navigation />
+
+    <!-- The individual page content gets injected right here -->
+    <main class="flex-grow">
+        <slot /> 
+    </main>
+
+    <Footer />
+
+</body>
+</html>
