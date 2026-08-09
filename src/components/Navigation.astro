@@ -1,5 +1,7 @@
 ---
 // src/components/Navigation.astro
+import { Image } from 'astro:assets';
+import leopardSingle from "../../public/England_Logo.png";
 ---
 <nav class="bg-[rgb(30,28,55)] text-white shadow-md relative z-50">
   <div class="container mx-auto px-4 max-w-6xl">
@@ -7,9 +9,8 @@
       
       <!-- Brand / Home Link -->
       <a href="/" class="flex items-center gap-3 text-xl font-bold tracking-wide text-white hover:text-[#fbbd08] transition-colors duration-300">
-        <!-- Placeholder for a small leopard logo if wanted later -->
-        <span class="w-8 h-8 bg-[#fbbd08] rounded-full flex items-center justify-center text-[rgb(30,28,55)] text-sm">EE</span>
-        Elsa England PTA
+       <Image src={leopardSingle} alt="Elsa England PTA Logo" width="60"/>
+       Elsa England PTA
       </a>
 
       <!-- Desktop Navigation -->
@@ -41,7 +42,7 @@
         <a href="/membership" class="hover:text-[#fbbd08] transition-colors duration-300">Membership</a>
         
         <!-- Store/Donate CTA -->
-        <a href="/store" class="bg-[#fbbd08] text-[rgb(30,28,55)] px-5 py-2 rounded-full font-bold hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+        <a href="https://www.zeffy.com/en-US/ticketing/823d1459-17e1-44cc-b5b4-ead0c4fe182d" class="bg-[#fbbd08] text-[rgb(30,28,55)] px-5 py-2 rounded-full font-bold hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
           PTA Store
         </a>
       </div>

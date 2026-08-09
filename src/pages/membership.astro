@@ -1,0 +1,48 @@
+---
+// src/pages/membership.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+    <!-- Page Header -->
+    <header class="bg-[rgb(30,28,55)] text-white py-12 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#fbbd08]">PTA Membership</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">Add your voice. Bolster our partnership.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-16 max-w-3xl">
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-lg text-gray-700 leading-relaxed space-y-6">
+            
+            <p>
+                The Elsa England PTA partners with the Texas PTA and the National PTA organizations to advocate for our students and our school. By joining the PTA, you add your voice to millions of others across the state and the country to bolster this partnership.
+            </p>
+
+            <p class="text-[rgb(30,28,55)] font-medium text-xl border-l-4 border-[#fbbd08] pl-4">
+                Membership is open to any members of the community, not just parents of Elsa England students.
+            </p>
+
+            <!-- Styled Note Callout -->
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg my-8">
+                <div class="flex items-start">
+                    <!-- SVG Icon instead of text emoji -->
+                    <svg class="w-6 h-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <p class="text-sm md:text-base text-blue-900 m-0">
+                        <strong>Note:</strong> PTA membership is not required to participate in PTA-sponsored events and programs (with one exception: the <strong>PTA Reflections program</strong> is part of the National PTA, so you must be a PTA member to be eligible for any awards).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center pt-8 mt-8 border-t border-gray-100">
+                <h2 class="text-2xl font-bold text-[rgb(30,28,55)] mb-6">Ready to join?</h2>
+                <a href="#" class="inline-block bg-[#fbbd08] text-[rgb(30,28,55)] font-bold py-4 px-10 rounded-full hover:bg-yellow-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-lg">
+                    Join for the 2026-2027 Year
+                </a>
+            </div>
+
+        </div>
+    </div>
+</BaseLayout>
