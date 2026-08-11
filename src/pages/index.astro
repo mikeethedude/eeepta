@@ -3,27 +3,35 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CalendarEmbed from '../components/CalendarEmbed.astro';
 import QuickLinks from '../components/QuickLinks.astro';
-import LeopardHero from '../../leopardlogo.png';
+import leopardSingle from "../../public/England_Logo.png";
+import { Image } from 'astro:assets';
 ---
 
 <BaseLayout>
     <!-- Hero Section -->
     <header class="bg-[rgb(30,28,55)] text-white py-16 px-4 text-center">
-        <div class="container mx-auto max-w-4xl">
+        <div class="container mx-auto max-w-4xl flex flex-col items-center">
             
-            <!-- Accessible, visually hidden H1 -->
-            <h1 class="sr-only">Welcome to Elsa England PTA. Together, every child can flourish.</h1>
+            <!-- Hero Image -->
+            <Image src={leopardSingle} alt="Elsa England Elementary Logo" width="200" class="mx-auto mb-6 drop-shadow-2xl" />
             
-            <!-- Hero Image pulled directly from /public -->
-            <img src="/leopardlogo.png" alt="Elsa England PTA Leopards logo and welcome message" class="mx-auto max-w-full h-auto mb-8 drop-shadow-xl">
+            <!-- Restyled Typography -->
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#fbbd08] tracking-tight mb-3">
+                Welcome to Elsa England PTA
+            </h1>
+            <span class="text-xl md:text-2xl text-gray-300 font-light tracking-wide mb-8 block">
+                Together, every child can flourish.
+            </span> 
             
             <!-- Action Buttons -->
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-                <!-- Drop your Zeffy link in the href below -->
-                <a href="#" class="bg-[#fbbd08] text-[rgb(30,28,55)] font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition shadow-lg">Donate via Zeffy</a>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
+                <!-- Donate Link -->
+                <a href="#" class="bg-[#fbbd08] text-[rgb(30,28,55)] font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">Donate via Zeffy</a>
                 
-                <a href="https://www.zeffy.com/en-US/ticketing/823d1459-17e1-44cc-b5b4-ead0c4fe182d" class="bg-white text-[rgb(30,28,55)] font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition shadow-lg">PTA Store</a>
+                <!-- PTA Store Link -->
+                <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-leopards-store-26--27" class="bg-white text-[rgb(30,28,55)] font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">PTA Store</a>
             </div>
+            
         </div>
     </header>
 

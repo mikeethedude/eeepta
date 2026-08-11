@@ -1,0 +1,47 @@
+---
+// src/pages/programs.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Drop your new copy into the 'desc' fields here!
+const programs = [
+  { name: "Math Pentathlon", slug: "math-pentathlon", desc: "Engaging opportunity for students to strengthen their math thinking skills through fun, strategic games." },
+  { name: "Math Superstars", slug: "math-superstars", desc: "The goal of this program is to enhance the student’s knowledge of Math. The program is great for encouraging parent/child teamwork, practicing math skills and learning to approach problem-solving situations." },
+  { name: "Spelling Bee", slug: "spelling-bee", desc: "Your copy for Spelling Bee goes here..." }
+];
+---
+
+<BaseLayout>
+    <!-- Page Header -->
+    <header class="bg-[rgb(30,28,55)] text-white py-12 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#fbbd08]">PTA Programs</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">Enriching our students beyond the classroom.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="container mx-auto px-4 py-16 max-w-6xl">
+        <!-- justify-items-center ensures that when cards stop growing at 500px, they stay centered in their column -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            
+            {programs.map((program) => (
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full w-full max-w-[500px] group">
+                    
+                    <h2 class="text-2xl font-bold text-[rgb(30,28,55)] mb-4 border-b-4 border-[#fbbd08] pb-2 inline-block self-start">
+                        {program.name}
+                    </h2>
+                    
+                    <p class="text-gray-600 mb-8 flex-grow leading-relaxed">
+                        {program.desc}
+                    </p>
+                    
+                    <a href={`/programs/${program.slug}`} class="inline-flex items-center font-bold text-blue-600 hover:text-[rgb(30,28,55)] transition-colors mt-auto group-hover:underline">
+                        Learn more 
+                        <svg class="w-4 h-4 ml-1 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            ))}
+            
+        </div>
+    </div>
+</BaseLayout>

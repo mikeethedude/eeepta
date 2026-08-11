@@ -1,0 +1,56 @@
+---
+// src/pages/get-involved/donate.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+    <!-- Page Header -->
+    <header class="bg-[rgb(30,28,55)] text-white py-12 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#fbbd08]">Make a Donation</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">Ensure every student has the resources they need to thrive.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-16 max-w-3xl">
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-lg text-gray-700 leading-relaxed space-y-8">
+            
+            <p>
+                One goal of the PTA is to ensure that every student has the resources they need to thrive, and we need your help to make this possible. We kindly ask for your donations to help fund educational programs, extracurricular activities, and field trips.
+            </p>
+
+            <!-- Strategic Callout Box -->
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                <div class="flex items-start">
+                    <svg class="w-6 h-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <div>
+                        <h3 class="font-bold text-[rgb(30,28,55)] mb-1">The Early Bird Impact</h3>
+                        <p class="text-blue-900 m-0 text-base">
+                            The more donations we receive at the front end of the school year, the better we can plan and allocate resources effectively. <strong>If we reach our funding goals early, we might even be able to skip additional fundraisers this year!</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                Please know that all contributions are tax-deductible, and every donation, no matter the size, will make a significant difference in the lives of our students. Together, we can create an enriching and supportive learning environment for our children.
+            </p>
+
+            <!-- Call to Action -->
+            <div class="text-center pt-8 mt-8 border-t border-gray-100">
+                <h2 class="text-2xl font-bold text-[rgb(30,28,55)] mb-6">Ready to donate?</h2>
+                
+                <!-- I dropped your Zeffy peer-to-peer link in here -->
+                <a href="https://www.zeffy.com/en-US/peer-to-peer/donate-to-make-a-difference-9141" target="_blank" rel="noopener noreferrer" class="inline-block bg-[#fbbd08] text-[rgb(30,28,55)] font-bold py-4 px-10 rounded-full hover:bg-yellow-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-lg">
+                    Go to our Donation Page
+                </a>
+                
+                <p class="mt-6 text-gray-500 font-medium italic">
+                    Thank you for your generosity and continued support.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</BaseLayout>
