@@ -4,17 +4,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Drop your new copy into the 'desc' fields here!
 const programs = [
+    
+  { name: "Cultural Heritage Night", slug: "cultural-heritage-night", desc: ""},
+  { name: "Geography Superstars", slug: "geography-superstars"},
   { name: "Math Pentathlon", slug: "math-pentathlon", desc: "Engaging opportunity for students to strengthen their math thinking skills through fun, strategic games." },
   { name: "Math Superstars", slug: "math-superstars", desc: "The goal of this program is to enhance the student’s knowledge of Math. The program is great for encouraging parent/child teamwork, practicing math skills and learning to approach problem-solving situations." },
-  { name: "Spelling Bee", slug: "spelling-bee", desc: "Your copy for Spelling Bee goes here..." }
+  { name: "Spelling Bee", slug: "spelling-bee", desc: "The Elsa England PTA will be hosting a Spelling Bee this year for 2nd, 3rd, 4th, and 5th graders.  Round 1 will be a written test given in each student's classroom in November." },
+  { name: "Math Kangaroo", slug: "math-kangaroo"}
 ];
 ---
 
 <BaseLayout>
     <!-- Page Header -->
-    <header class="bg-[rgb(30,28,55)] text-white py-12 px-4 text-center">
+    <header class="bg-pta-navy text-white py-12 px-4 text-center">
         <div class="container mx-auto max-w-4xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#fbbd08]">PTA Programs</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-pta-gold">PTA Programs</h1>
             <p class="mt-4 text-lg md:text-xl text-gray-300">Enriching our students beyond the classroom.</p>
         </div>
     </header>
@@ -27,7 +31,7 @@ const programs = [
             {programs.map((program) => (
                 <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full w-full max-w-[500px] group">
                     
-                    <h2 class="text-2xl font-bold text-[rgb(30,28,55)] mb-4 border-b-4 border-[#fbbd08] pb-2 inline-block self-start">
+                    <h2 class="text-2xl font-bold text-pta-navy mb-4 border-b-4 border-pta-gold pb-2 inline-block self-start">
                         {program.name}
                     </h2>
                     
@@ -35,7 +39,7 @@ const programs = [
                         {program.desc}
                     </p>
                     
-                    <a href={`/programs/${program.slug}`} class="inline-flex items-center font-bold text-blue-600 hover:text-[rgb(30,28,55)] transition-colors mt-auto group-hover:underline">
+                    <a href={`/programs/${program.slug}`} class="inline-flex items-center font-bold text-blue-600 hover:text-pta-navy transition-colors mt-auto group-hover:underline">
                         Learn more 
                         <svg class="w-4 h-4 ml-1 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </a>

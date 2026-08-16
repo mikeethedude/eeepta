@@ -14,9 +14,9 @@ const sortedAnnouncements = allAnnouncements.sort((a: any, b: any) =>
 
 <BaseLayout>
     <!-- Page Header -->
-    <header class="bg-[rgb(30,28,55)] text-white py-12 px-4 text-center">
+    <header class="bg-pta-navy text-white py-12 px-4 text-center">
         <div class="container mx-auto max-w-4xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#fbbd08]">Announcements</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-pta-gold">Announcements</h1>
             <p class="mt-4 text-lg md:text-xl text-gray-300">The latest and greatest.</p>
         </div>
     </header>
@@ -25,11 +25,11 @@ const sortedAnnouncements = allAnnouncements.sort((a: any, b: any) =>
     <div class="container mx-auto px-4 py-16 max-w-3xl space-y-10">
         
         {sortedAnnouncements.map((post: any) => (
-            <article class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-t-4 border-[#fbbd08]">
+            <article class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-t-4 border-pta-gold">
                 
                 <!-- Header pulled from Markdown Frontmatter -->
                 <header class="mb-6 pb-6 border-b border-gray-100">
-                    <h2 class="text-3xl font-bold text-[rgb(30,28,55)] mb-2">
+                    <h2 class="text-3xl font-bold text-pta-navy mb-2">
                         {post.frontmatter.title}
                     </h2>
                     <time class="text-sm font-medium text-gray-500 uppercase tracking-wider">
@@ -42,9 +42,9 @@ const sortedAnnouncements = allAnnouncements.sort((a: any, b: any) =>
                             [&>p]:mb-6 
                             [&>ul]:list-none [&>ul]:pl-0 [&>ul]:mb-6 [&>ul>li]:mb-3
                             [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-6 [&>ol>li]:mb-2
-                            [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-[rgb(30,28,55)] [&>h3]:mb-4
+                            [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-pta-navy [&>h3]:mb-4
                             [&_a]:text-blue-600 [&_a]:underline [&_a]:font-medium hover:[&_a]:text-blue-800
-                            [&_strong]:text-[rgb(30,28,55)] [&_hr]:my-8 [&_hr]:border-gray-200">
+                            [&_strong]:text-pta-navy [&_hr]:my-8 [&_hr]:border-gray-200">
                     <post.default />
                 </div>
                 

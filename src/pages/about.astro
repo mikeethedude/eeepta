@@ -1,0 +1,73 @@
+---
+// src/pages/about.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import defaultImage from '../../public/leopard_head.png'
+
+// 1. Fetch all markdown files using Vite's native glob
+const rawPosts = import.meta.glob('../data/team/*.md', { eager: true });
+const allTeam = Object.values(rawPosts);
+
+// 2. Sort them by weight (missing weights drop to the bottom)
+const sortedTeam = allTeam.sort((a: any, b: any) => 
+    (a.frontmatter.weight || 100) - (b.frontmatter.weight || 100)
+);
+---
+
+<BaseLayout>
+    <!-- Page Header -->
+    <header class="bg-pta-navy text-white py-12 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-pta-gold">Our Team</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">Meet the PTA board and volunteers</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-16 max-w-6xl">
+        
+        <!-- Switched to a Grid Layout -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {sortedTeam.map((post: any) => (
+                <article class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
+                    
+                    <!-- Profile Image (Uses frontmatter or falls back to default) -->
+                    <div class="w-32 h-32 mb-5 rounded-full overflow-hidden border-4 border-pta-navy bg-gray-50 flex-shrink-0 shadow-sm">
+                        <img 
+                            src={post.frontmatter.image || defaultImage.src} 
+                            alt={`Photo of ${post.frontmatter.title}`} 
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    
+                    <!-- Header pulled from Markdown Frontmatter -->
+                    <h2 class="text-2xl font-bold text-pta-navy mb-1">
+                        {post.frontmatter.title}
+                    </h2>
+                    <p class="text-pta-gold font-bold uppercase tracking-wider text-sm mb-6">
+                        {post.frontmatter.position}
+                    </p>
+                    
+                    <!-- The Hidden Bio -->
+                    <details class="w-full text-left group mt-auto">
+                        <!-- Summary is the clickable "button" -->
+                        <summary class="cursor-pointer font-bold text-blue-600 hover:text-pta-navy transition-colors list-none text-center outline-none flex justify-center items-center gap-1">
+                            <span>Read Bio</span>
+                            <!-- Chevron that flips when open -->
+                            <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </summary>
+                        
+                        <!-- The expanding content -->
+                        <div class="mt-4 pt-4 border-t border-gray-100 text-base text-gray-600 leading-relaxed 
+                                    [&>p]:mb-4 last:[&>p]:mb-0
+                                    [&_a]:text-blue-600 [&_a]:underline hover:[&_a]:text-blue-800">
+                            <post.default />
+                        </div>
+                    </details>
+                    
+                </article>
+            ))}
+
+        </div>
+    </div>
+</BaseLayout>

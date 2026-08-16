@@ -1,2 +1,10 @@
 /* src/styles/global.css */
 @import "tailwindcss";
+
+@theme {
+  /* This creates bg-pta-navy, text-pta-navy, border-pta-navy, etc. */
+  --color-pta-navy: rgb(30, 28, 55);
+  
+  /* This creates bg-pta-gold, text-pta-gold, border-pta-gold, etc. */
+  --color-pta-gold: #D9A032;
+}

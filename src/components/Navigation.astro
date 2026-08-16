@@ -1,15 +1,12 @@
 ---
 // src/components/Navigation.astro
-import { Image } from 'astro:assets';
-import leopardSingle from "../../public/England_Logo.png";
 ---
-<nav class="bg-[rgb(30,28,55)] text-white shadow-md relative z-50">
+<nav class="bg-pta-navy text-white shadow-md relative z-50">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="flex justify-between items-center py-4">
       
       <!-- Brand / Home Link -->
-      <a href="/" class="flex items-center gap-3 text-xl font-bold tracking-wide text-white hover:text-[#fbbd08] transition-colors duration-300">
-       <Image src={leopardSingle} alt="Elsa England PTA Logo" width="60"/>
+      <a href="/" class="flex items-center gap-3 text-xl font-bold tracking-wide text-white hover:text-pta-gold transition-colors duration-300">
        Elsa England PTA
       </a>
 
@@ -19,11 +16,12 @@ import leopardSingle from "../../public/England_Logo.png";
        
 
         <!-- Standard Links -->
-        <a href="/announcements" class="hover:text-[#fbbd08] transition-colors duration-300">Announcements</a>
-        <a href="/programs" class="hover:text-[#fbbd08] transition-colors duration-300">Programs</a>
+        <a href="/announcements" class="hover:text-pta-gold transition-colors duration-300">Announcements</a>
+        <a href="/about" class="hover:text-pta-gold transition-colors duration-300">About Us</a>
+        <a href="/programs" class="hover:text-pta-gold transition-colors duration-300">Programs</a>
  <!-- Dropdown: Events -->
         <div class="relative group">
-          <button class="flex items-center gap-1 py-2 hover:text-[#fbbd08] transition-colors duration-300">
+          <button class="flex items-center gap-1 py-2 hover:text-pta-gold transition-colors duration-300">
             Get Involved
             <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -32,22 +30,22 @@ import leopardSingle from "../../public/England_Logo.png";
           
           <div class="absolute left-0 mt-2 w-56 bg-white text-gray-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left scale-95 group-hover:scale-100">
             <div class="py-2 border border-gray-100 rounded-lg">
-              <a href="/get-involved/donate" class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[rgb(30,28,55)] transition-colors">Donate</a>
-              <a href="/get-involved/volunteer" class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[rgb(30,28,55)] transition-colors">Volunteer</a>
-              <a href="/get-involved/homeroom-parents" class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-[rgb(30,28,55)] transition-colors">Homeroom Parents</a>
+              <a href="/get-involved/donate" class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-pta-navy transition-colors">Donate</a>
+              <a href="/get-involved/volunteer" class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-pta-navy transition-colors">Volunteer</a>
+              <a href="/get-involved/homeroom-parents" class="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-pta-navy transition-colors">Homeroom Parents</a>
             </div>
           </div>
         </div>
-        <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-pta-pta-texas-congresss-membership" class="hover:text-[#fbbd08] transition-colors duration-300">Membership</a>
+        <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-pta-pta-texas-congresss-membership" class="hover:text-pta-gold transition-colors duration-300">Membership</a>
         
         <!-- Store/Donate CTA -->
-        <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-leopards-store-26--27" class="bg-[#fbbd08] text-[rgb(30,28,55)] px-5 py-2 rounded-full font-bold hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+        <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-leopards-store-26--27" class="bg-pta-gold text-pta-navy px-5 py-2 rounded-full font-bold hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
           PTA Store
         </a>
       </div>
 
       <!-- Mobile Menu Toggle (Hamburger) -->
-      <button id="mobile-menu-btn" class="md:hidden text-white hover:text-[#fbbd08] focus:outline-none">
+      <button id="mobile-menu-btn" class="md:hidden text-white hover:text-pta-gold focus:outline-none">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -62,17 +60,18 @@ import leopardSingle from "../../public/England_Logo.png";
         
 
         <!-- Standard Links -->
-        <a href="/announcements" class="block py-3 font-medium border-b border-[rgb(45,43,70)] hover:text-[#fbbd08] transition-colors">Announcements</a>
-        <a href="/programs" class="block py-3 font-medium border-b border-[rgb(45,43,70)] hover:text-[#fbbd08] transition-colors">Programs</a>
+        <a href="/announcements" class="block py-3 font-medium border-b border-[rgb(45,43,70)] hover:text-pta-gold transition-colors">Announcements</a>
+        <a href="/about" class="block py-3 font-medium border-b border-[rgb(45,43,70)] hover:text-pta-gold transition-colors">About Us</a>
+        <a href="/programs" class="block py-3 font-medium border-b border-[rgb(45,43,70)] hover:text-pta-gold transition-colors">Programs</a>
         <!-- Get Involved Section -->
-        <div class="font-bold text-[#fbbd08] pt-3 pb-1 border-b border-[rgb(45,43,70)]">Get Involved</div>
+        <div class="font-bold text-pta-gold pt-3 pb-1 border-b border-[rgb(45,43,70)]">Get Involved</div>
         <a href="/get-involved/donate" class="block pl-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Donate</a>
         <a href="/get-involved/volunteer" class="block pl-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Volunteer</a>
         <a href="/get-involved/homeroom-parents" class="block pl-4 py-2 text-sm text-gray-300 hover:text-white transition-colors">Homeroom Parents</a>
-        <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-pta-pta-texas-congresss-membership" class="block py-3 font-medium border-b border-[rgb(45,43,70)] hover:text-[#fbbd08] transition-colors">Membership</a>
+        <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-pta-pta-texas-congresss-membership" class="block py-3 font-medium border-b border-[rgb(45,43,70)] hover:text-pta-gold transition-colors">Membership</a>
         
         <!-- Mobile Store CTA -->
-        <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-leopards-store-26--27" class="block w-full text-center bg-[#fbbd08] text-[rgb(30,28,55)] px-5 py-3 mt-6 rounded-lg font-bold hover:bg-yellow-400 transition-colors">
+        <a href="https://www.zeffy.com/en-US/ticketing/elsa-england-leopards-store-26--27" class="block w-full text-center bg-pta-gold text-pta-navy px-5 py-3 mt-6 rounded-lg font-bold hover:bg-yellow-400 transition-colors">
           PTA Store
         </a>
     </div>
