@@ -1,5 +1,6 @@
 ---
 title: Renee Chapa
+position: Teacher Appreciation
 weight: 6
 ---
 
