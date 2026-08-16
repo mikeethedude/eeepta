@@ -1,7 +1,7 @@
 ---
 title: Deepti Bhatia
 position: Board Member
-weight: 8
+weight: 6
 image: deeptibhatia.jpg
 ---
 Fifth year with the PTA, four years of being actively involved and still happily saying “yes” when someone needs a hand\! 😆

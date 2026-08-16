@@ -1,5 +1,7 @@
 ---
 // src/components/Navigation.astro
+import {Image} from 'astro:assets';
+import PawImage from '../../public/paw.png';
 ---
 <nav class="bg-pta-navy text-white shadow-md relative z-50">
   <div class="container mx-auto px-4 max-w-6xl">
@@ -7,7 +9,8 @@
       
       <!-- Brand / Home Link -->
       <a href="/" class="flex items-center gap-3 text-xl font-bold tracking-wide text-white hover:text-pta-gold transition-colors duration-300">
-       Elsa England PTA
+       <Image src={PawImage} alt="LeopardPaw" width="60" />
+        Elsa England PTA
       </a>
 
       <!-- Desktop Navigation -->
