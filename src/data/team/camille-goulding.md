@@ -1,6 +1,7 @@
 ---
 title: Camille Goulding
 position: Vice President
+image: camillegoulding.jpg
 weight: 2
 ---
 
