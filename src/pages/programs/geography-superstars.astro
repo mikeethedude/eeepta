@@ -1,0 +1,121 @@
+---
+// src/pages/programs/geography-superstars.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Array for the worksheet links to keep the HTML clean
+const worksheets = [
+    { grade: 'Kindergarten', url: 'https://drive.google.com/file/d/1GRIdChO6wGJtSqX07kt-aNWXb6XovbEj/view?usp=drive_link' },
+    { grade: 'First Grade', url: 'https://drive.google.com/file/d/15MmV939rUIMNbwr9yFzBjzjwVYEwjVHW/view?usp=drive_link' },
+    { grade: 'Second Grade', url: 'https://drive.google.com/file/d/1HahJiU7-ASxRJYykzTm3o3lFGeWY-lFI/view?usp=drive_link' },
+    { grade: 'Third Grade', url: 'https://drive.google.com/file/d/1TBxbxTeZb0JHiMwwWkyLZbtRHY1qvpFv/view?usp=drive_link' },
+    { grade: 'Fourth Grade', url: 'https://drive.google.com/file/d/19WjRiVzcif-EI5gRTGoqyAfPgphvRzwy/view?usp=drive_link' },
+    { grade: 'Fifth Grade', url: 'https://drive.google.com/file/d/1tbr87HjpJQIEwtmKRZ2_cagrqAb9d-m2/view?usp=drive_link' }
+];
+---
+
+<BaseLayout>
+    <!-- Page Header -->
+    <header class="bg-pta-navy text-white py-12 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-bold text-pta-gold">Geography Superstars</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">Promoting learning of the geography of the world, continent by continent.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <div class="container mx-auto px-4 py-16 max-w-6xl">
+        <div class="flex flex-col lg:flex-row gap-12">
+            
+            <!-- Sidebar: Table of Contents & Logistics -->
+            <aside class="lg:w-1/3 space-y-8 flex-shrink-0">
+                
+                <!-- Table of Contents Card -->
+                <div class="bg-white rounded-2xl shadow-lg border-t-4 border-pta-gold p-6 sticky top-8">
+                    <h2 class="text-xl font-bold text-pta-navy mb-4">On this page</h2>
+                    <ul class="space-y-3 text-gray-600 font-medium">
+                        <li><a href="#about" class="hover:text-blue-600 transition-colors">About the Program</a></li>
+                        <li><a href="#how-it-works" class="hover:text-blue-600 transition-colors">How Does It Work?</a></li>
+                        <li><a href="#worksheets" class="hover:text-blue-600 transition-colors">Worksheets by Grade</a></li>
+                    </ul>
+                </div>
+
+                <!-- Key Details Card -->
+                <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                    <h2 class="text-xl font-bold text-pta-navy mb-5">Key Details</h2>
+                    <ul class="space-y-5 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <div><strong>Duration:</strong><br>October – March</div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <div><strong>Final Deadline:</strong><br>March 27, 2026</div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <div><strong>Contact:</strong><br><a href="mailto:eee.geographysuperstars@gmail.com" class="text-blue-600 hover:underline text-sm break-all">eee.geographysuperstars@gmail.com</a></div>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="lg:w-2/3 text-lg text-gray-700 leading-relaxed space-y-12">
+
+                <section id="about" class="scroll-mt-12">
+                    <h2 class="text-3xl font-bold text-pta-navy mb-4 border-b-2 border-gray-100 pb-2">Welcome to Geography Superstars!</h2>
+                    <p class="mb-4">We are so excited you are interested in participating in this PTA sponsored enrichment program this year! If you are familiar with Math Superstars, this program is run in a similar fashion.</p>
+                    <p class="mb-4">It is a completely optional program for all students attending Kindergarten through Fifth grade. The goal of this program is to enhance the student’s knowledge of Geography. The program is great for encouraging parent/child teamwork and promote learning of the geography of the world. <strong>Each grade level will focus on a different continent.</strong></p>
+                    <p>The program begins in October and runs through March. There will be an end of the year fun treat for reaching the finish line and completing all 15 worksheets!!!</p>
+                </section>
+
+                <section id="how-it-works" class="scroll-mt-12">
+                    <h2 class="text-3xl font-bold text-pta-navy mb-4 border-b-2 border-gray-100 pb-2">How Does the Program Work?</h2>
+                    <ol class="list-decimal pl-6 space-y-3 mb-8 font-medium text-gray-800">
+                        <li>Print the worksheets at home according to your child's grade level.</li>
+                        <li>Complete one worksheet at a time.</li>
+                        <li>Submit the finished worksheet using the digital link below.</li>
+                    </ol>
+
+                    <div class="text-center py-6">
+                        <a href="https://forms.gle/wWv5TGscMZd53RWVA" target="_blank" rel="noopener noreferrer" class="inline-block bg-pta-gold text-pta-navy font-bold py-4 px-8 rounded-full hover:bg-yellow-400 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                            Geography Superstars Submission Link
+                        </a>
+                        <p class="mt-4 font-bold text-red-600 text-xl uppercase tracking-wide">Only 1 worksheet per submission!</p>
+                    </div>
+
+                    <div class="bg-gray-50 border-l-4 border-gray-400 p-5 rounded-r-lg mt-6">
+                        <p class="text-sm md:text-base text-gray-700 m-0">
+                            <strong>Note:</strong> Please remember that the program is optional and it will not be part of your child’s classroom instruction or grades.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="worksheets" class="scroll-mt-12">
+                    <h2 class="text-3xl font-bold text-pta-navy mb-4 border-b-2 border-gray-100 pb-2">Worksheets per Grade Level</h2>
+                    <p class="mb-6">These files contain all 15 worksheets to make it easy to print at home. Due dates are recommendations to help keep students on track, but <strong class="text-red-600">all worksheets must be turned in by March 27, 2026!</strong></p>
+                    
+                    <!-- Cleaned up Google Sheets Iframe -->
+                    <div class="w-full h-[550px] rounded-xl overflow-hidden shadow-md border border-gray-200 mb-10">
+                        <iframe 
+                            src="https://docs.google.com/spreadsheets/d/187_5Kz3WG6tr7w5nshrGKrSNvmpR1n0B8uI2amGHKVk/htmlembed?authuser=0" 
+                            class="w-full h-full" 
+                            title="Geography Superstars Individual Spreadsheets"
+                            frameborder="0" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {worksheets.map((sheet) => (
+                            <a href={sheet.url} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:border-pta-gold hover:bg-yellow-50 text-pta-navy font-bold transition-colors text-center">
+                                {sheet.grade}
+                            </a>
+                        ))}
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+</BaseLayout>
