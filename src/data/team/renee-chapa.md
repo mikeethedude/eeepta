@@ -1,6 +1,7 @@
 ---
 title: Renee Chapa
 position: Teacher Appreciation
+image: reneechapa.jpg
 weight: 6
 ---
 
