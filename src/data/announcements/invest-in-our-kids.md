@@ -17,14 +17,6 @@ And we need your help to keep going.
 
 💙 Hope starts with you. Can you help us continue making a difference?
 
-📢 [Donate today!](https://www.zeffy.com/en-US/peer-to-peer/donate-to-make-a-difference-9141)
+📢 [Join the PTA today!](https://www.zeffy.com/en-US/ticketing/elsa-england-pta-pta-texas-congresss-membership)
 
 Thank you for believing in our mission and in the bright future of our kids!
-
----
-**Please join a team while donating.** Follow these steps to join a team and create your personalized campaign:
-1. Click on [Donate via Zeffy](https://www.zeffy.com/en-US/peer-to-peer/donate-to-make-a-difference-9141)
-2. Join a team by searching for your teacher.
-3. Enter the parent email and kid’s information as required.
-4. Share your personal links with family and friends.
-5. Donate and track your campaign and class total with full transparency.
