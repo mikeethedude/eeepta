@@ -7,8 +7,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- Page Header -->
     <header class="bg-pta-navy text-white py-12 px-4 text-center">
         <div class="container mx-auto max-w-4xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-pta-gold">Make a Donation</h1>
-            <p class="mt-4 text-lg md:text-xl text-gray-300">Ensure every student has the resources they need to thrive.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-pta-gold">Growing Together</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">2026-2027 Donation Drive</p>
         </div>
     </header>
 
@@ -16,38 +16,92 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="container mx-auto px-4 py-16 max-w-3xl">
         <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-lg text-gray-700 leading-relaxed space-y-8">
             
+            <div class="text-center space-y-4 mb-8">
+                <p class="text-2xl text-pta-navy font-bold">
+                    Help Us Reach Our $40,000 Goal!
+                </p>
+                <p class="text-xl font-medium">
+                    At Elsa England Elementary, we believe amazing things happen when our school community grows together.
+                </p>
+            </div>
+
             <p>
-                One goal of the PTA is to ensure that every student has the resources they need to thrive, and we need your help to make this possible. We kindly ask for your donations to help fund educational programs, extracurricular activities, and field trips.
+                From October 1 through May 15, the Elsa England Elementary PTA is working toward a goal of raising <strong>$40,000</strong> to support the students, teachers, staff, programs, and experiences that make our school community so special. And we need our entire community to help our tree grow!
             </p>
 
-            <!-- Strategic Callout Box -->
-            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+            <!-- Quick Action Button for fast donors -->
+            <div class="text-center pt-2 pb-4">
+                <a href="https://www.zeffy.com/en-US/donation-form/growing-together-donation-drive-2026--2027" target="_blank" rel="noopener noreferrer" class="inline-block bg-pta-gold text-pta-navy font-bold py-3 px-8 rounded-full hover:bg-yellow-400 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+                    Donate Now
+                </a>
+            </div>
+
+            <!-- Thematic Leaf Callout Box -->
+            <div class="bg-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r-lg my-8 shadow-sm">
                 <div class="flex items-start">
-                    <svg class="w-6 h-6 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span class="text-3xl mr-4 flex-shrink-0" aria-hidden="true">🍃</span>
                     <div>
-                        <h3 class="font-bold text-pta-navy mb-1">The Early Bird Impact</h3>
-                        <p class="text-blue-900 m-0 text-base">
-                            The more donations we receive at the front end of the school year, the better we can plan and allocate resources effectively. <strong>If we reach our funding goals early, we might even be able to skip additional fundraisers this year!</strong>
+                        <h3 class="font-bold text-emerald-900 mb-2 text-xl">Every Donation Adds a Leaf</h3>
+                        <p class="text-emerald-800 m-0 text-base">
+                            Throughout the Growing Together campaign, we will be building a large community tree at Elsa England Elementary. Every donation we receive adds another leaf to our tree, creating a visual reminder of what we can accomplish when families, businesses, and community members come together to support our school.
                         </p>
                     </div>
                 </div>
             </div>
 
+            <p class="text-center text-xl font-bold text-pta-navy">
+                Whether you give $5, $25, $100, or more, your gift matters.<br/>
+                Every leaf gets us closer to our goal.<br/>
+                Every donation helps our school grow.
+            </p>
+
+            <!-- Support List -->
+            <div class="pt-6">
+                <h3 class="text-2xl font-bold text-pta-navy mb-4 flex items-center gap-2">
+                    <span>🌳</span> What Does Your Donation Support?
+                </h3>
+                <p class="mb-4">Funds raised through Growing Together help the Elsa England Elementary PTA provide and support opportunities such as:</p>
+                
+                <ul class="space-y-3 pl-2">
+                    {[
+                        'Student enrichment and educational programs',
+                        'Family and community events',
+                        'Teacher and staff appreciation',
+                        'Campus and student needs',
+                        'PTA-sponsored programs and experiences',
+                        'Additional opportunities that directly benefit the Elsa England school community'
+                    ].map((item) => (
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-pta-gold mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <span>{item}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
             <p>
-                Please know that all contributions are tax-deductible, and every donation, no matter the size, will make a significant difference in the lives of our students. Together, we can create an enriching and supportive learning environment for our children.
+                Throughout the year, you'll see <em>Growing Together</em> at our PTA events, programs, Movie Nights, Spirit Nights, and other activities as we watch our tree—and our fundraising total—grow toward $40,000.
             </p>
 
             <!-- Call to Action -->
-            <div class="text-center pt-8 mt-8 border-t border-gray-100">
-                <h2 class="text-2xl font-bold text-pta-navy mb-6">Ready to donate?</h2>
+            <div class="text-center pt-10 mt-10 border-t border-gray-100">
                 
-                <!-- I dropped your Zeffy peer-to-peer link in here -->
-                <a href="https://www.zeffy.com/en-US/peer-to-peer/donate-to-make-a-difference-9141" target="_blank" rel="noopener noreferrer" class="inline-block bg-pta-gold text-pta-navy font-bold py-4 px-10 rounded-full hover:bg-yellow-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-lg">
-                    Go to our Donation Page
+                <!-- Motto -->
+                <div class="mb-10 space-y-2 text-2xl md:text-3xl font-bold text-pta-navy">
+                    <p>🌱 One School.</p>
+                    <p>🍃 One Community.</p>
+                    <p>🌳 Growing Together.</p>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Help Us Grow!</h2>
+                <p class="mb-8 text-gray-600">Give what is meaningful to your family and help us add another leaf to the tree.</p>
+                
+                <a href="https://www.zeffy.com/en-US/donation-form/growing-together-donation-drive-2026--2027" target="_blank" rel="noopener noreferrer" class="inline-block bg-pta-gold text-pta-navy font-bold py-4 px-10 rounded-full hover:bg-yellow-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-lg">
+                    Donate to Growing Together
                 </a>
                 
-                <p class="mt-6 text-gray-500 font-medium italic">
-                    Thank you for your generosity and continued support.
+                <p class="mt-8 text-gray-500 font-medium italic">
+                    Elsa England Elementary PTA
                 </p>
             </div>
 
