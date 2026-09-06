@@ -1,7 +1,7 @@
 ---
 // src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CalendarEmbed from '../components/CalendarEmbed.astro';
+import UpcomingEvents from '../components/UpcomingEvents.astro';
 import QuickLinks from '../components/QuickLinks.astro';
 import leopardSingle from "../../public/frontlogo.png";
 import { Image } from 'astro:assets';
@@ -42,7 +42,7 @@ import { Image } from 'astro:assets';
             <!-- Calendar Column -->
             <div class="lg:col-span-2">
                 <h2 class="text-3xl font-bold mb-6 text-pta-navy border-b-4 border-pta-gold inline-block pb-2">Upcoming Events</h2>
-                <CalendarEmbed />
+                <UpcomingEvents />
             </div>
 
             <!-- Quick Links Column -->

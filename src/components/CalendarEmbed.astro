@@ -1,5 +1,13 @@
 ---
 // src/components/CalendarEmbed.astro
+const apiKey = import.meta.env.GOOGLE_SHEETS_API;
+const sheetId = import.meta.env.GOOGLE_SHEET;
+const range = 'Master list!A:L';
+
+const response = await fetch(`https://googleapis.com{sheetId}/values/${range}?key=${apiKey}`);
+const data = await response.json();
+const rows = data.values;
+
 ---
 <div class="relative w-full overflow-hidden rounded-xl shadow-xl bg-white" style="padding-top: 75%;">
     <iframe class="absolute top-0 left-0 w-full h-full" 

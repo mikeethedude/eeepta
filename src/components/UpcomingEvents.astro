@@ -1,0 +1,121 @@
+---
+// src/components/UpcomingEvents.astro
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { JWT } from 'google-auth-library';
+
+const sheetId = import.meta.env.GOOGLE_SHEET;
+const serviceAccountEmail = import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const privateKey = import.meta.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
+let events = [];
+
+// Helper to figure out if an informal date like "Oct 5-16" is in the past
+function isFutureEvent(timingStr) {
+    // If there's no date or it's formatted too weirdly, show it just to be safe
+    if (!timingStr) return true; 
+    
+    // Grab the first month and number it sees (e.g., "Oct" and "5" from "Oct 5-16")
+    const match = timingStr.match(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d+)/i);
+    if (!match) return true; 
+
+    const monthStr = match[1];
+    const day = parseInt(match[2], 10);
+    
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthIndex = months.findIndex(m => m.toLowerCase() === monthStr.toLowerCase());
+    
+    // School year logic: Aug-Dec is 2026, Jan-Jul is 2027
+    const year = monthIndex >= 7 ? 2026 : 2027; 
+    
+    const eventDate = new Date(year, monthIndex, day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Strip time for a pure date comparison
+    
+    return eventDate >= today;
+}
+
+try {
+    const serviceAccountAuth = new JWT({
+        email: serviceAccountEmail,
+        key: privateKey,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'], 
+    });
+
+    const doc = new GoogleSpreadsheet(sheetId, serviceAccountAuth);
+    await doc.loadInfo(); 
+    
+    const sheet = doc.sheetsByTitle['2026-27_FundRaising_Calendar']; 
+    
+    if (sheet) {
+        await sheet.loadCells('A1:A100'); 
+        const rows = await sheet.getRows();
+        
+        events = rows.map((row) => {
+            const cell = sheet.getCell(row.rowNumber - 1, 0);
+            
+            let cellColor;
+            try {
+                cellColor = cell.backgroundColor;
+            } catch (e) {
+                cellColor = null;
+            }
+            
+            if (!cellColor) {
+                return null;
+            }
+            
+            return {
+                timing: row.get('Timing'),
+                event: row.get('Event'),
+                connection: row.get('Giving Tree connection'),
+                merchandise: row.get('Merchandise '),
+            };
+        })
+        .filter(item => item !== null)              // 1. Drop unformatted cells
+        .filter(item => isFutureEvent(item.timing)) // 2. Drop past events
+        .slice(0, 3);                               // 3. Keep only the next 3!
+    }
+
+} catch (error) {
+    console.error("[PTA Events] Error:", error.message);
+}
+---
+
+<div class="space-y-4">
+    {events.length === 0 ? (
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-8 text-center">
+            <p class="text-gray-500 italic">No upcoming events listed at this time.</p>
+        </div>
+    ) : (
+        events.map((item) => (
+            <div class={`rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col md:flex-row md:items-center gap-4 hover:shadow-md transition-shadow border-l-4 border-l-pta-gold`}>
+                
+                <div class="md:w-1/5 flex-shrink-0">
+                    <span class="text-pta-navy font-bold text-lg block">
+                        {item.timing || 'TBA'}
+                    </span>
+                </div>
+                
+                <div class="md:w-4/5">
+                    <h3 class="text-xl font-bold text-gray-800">
+                        {item.event || 'Upcoming Event'}
+                    </h3>
+                    
+                    {item.connection && (
+                        <p class="text-gray-600 mt-1 text-sm md:text-base font-medium">
+                            {item.connection}
+                        </p>
+                    )}
+
+                    {item.merchandise && (
+                        <div class="mt-2 inline-flex items-center bg-white bg-opacity-60 rounded-md px-3 py-1 text-sm text-gray-700 border border-gray-200">
+                            <svg class="w-4 h-4 mr-2 text-pta-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                            {item.merchandise}
+                        </div>
+                    )}
+                </div>
+                
+            </div>
+        ))
+    )}
+</div>
