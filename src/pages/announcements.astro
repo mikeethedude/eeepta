@@ -43,7 +43,7 @@ const sortedAnnouncements = allAnnouncements.sort((a: any, b: any) =>
                         <img 
                             src={post.frontmatter.image} 
                             alt={post.frontmatter.imageAlt || post.frontmatter.title} 
-                            class="w-full h-auto object-cover max-h-[24rem]"
+                            class={`w-full h-auto object-cover ${post.frontmatter.tallImage ? 'max-h-none' : 'max-h-[24rem]'}`}
                         />
                     </figure>
                 )}
