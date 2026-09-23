@@ -1,6 +1,26 @@
 ---
 // src/pages/programs/math-superstars.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// ADD YOUR INDIVIDUAL WORKSHEET LINKS HERE
+const worksheets = [
+    { grade: 'Kindergarten', url: 'https://drive.google.com/file/d/0B07sXClxPoKfTmVLTUZWVzFxZnF0aWp5OFRkcnFmdU5QdkUw/view?usp=drive_link&resourcekey=0-4t7XOjb3m3ro3J9pEmMrtw' },
+    { grade: 'First Grade', url: 'https://drive.google.com/file/d/0B07sXClxPoKfa09LMlJIYmRCZTg2ZDJnUVFmRU9Famw5b1pV/view?usp=drive_link&resourcekey=0-ky81r9-k5GGpN0mOjhGB3w' },
+    { grade: 'Second Grade', url: 'https://drive.google.com/file/d/0B07sXClxPoKfQmY0UzVIQ2FuODBwUWloWGxwOW9hTXZ3akxR/view?usp=drive_link&resourcekey=0-vJW0bpTy_yutY56I2cKdjQ' },
+    { grade: 'Third Grade', url: 'https://drive.google.com/file/d/0B07sXClxPoKfZW9sVS1SMnlrVzRhSVZYNmxqdmpJV1JWcXY4/view?usp=drive_link&resourcekey=0-nKLEUURbBIKSF9qYFJmWdA' },
+    { grade: 'Fourth Grade', url: 'https://drive.google.com/file/d/0B07sXClxPoKfdDR2VEZHUmtGRzVqMmh5YkhOcGRiWkxTc0dr/view?usp=drive_link&resourcekey=0-6WiP1jDQMlRwCDEBO3tzew' },
+    { grade: 'Fifth Grade', url: 'https://drive.google.com/file/d/0B07sXClxPoKfX21fM3hlTXdkZGExSjA0SUpRb2VaaVMydVl3/view?usp=drive_link&resourcekey=0-FoxuGX3CRrbmOSw7c7xjUA' }
+];
+
+// ADD YOUR INDIVIDUAL ANSWER KEY LINKS HERE
+const answerKeys = [
+    { grade: 'Kindergarten', url: 'https://drive.google.com/file/d/14iecqhlMv_SoLut0iEsSkj0t_dsmnFe2/view?usp=drive_link' },
+    { grade: '1st Grade', url: 'https://drive.google.com/file/d/1pNNg4B-ru3sbWI12CLq8Nia64-wKG6rh/view?usp=drive_link' },
+    { grade: '2nd Grade', url: 'https://drive.google.com/file/d/1NDs6CvfpYzmDyk-otKvtIGR8Mlu6IRL6/view?usp=drive_link' },
+    { grade: '3rd Grade', url: 'https://drive.google.com/file/d/1M5ZLHPWO51MLUNPQQORm7jIPrc9ZNfbu/view?usp=drive_link' },
+    { grade: '4th Grade', url: 'https://drive.google.com/file/d/1mOI8cNgrzLwEUOWCOIuqxXEOm2AztrVS/view?usp=drive_link' },
+    { grade: '5th Grade', url: 'https://drive.google.com/file/d/1rqBBmqrDVLixBFJEnO6MdRjG0o7-RLdu/view?usp=drive_link' }
+];
 ---
 
 <BaseLayout>
@@ -108,9 +128,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                     </div>
                     
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        {['Kindergarten', 'First Grade', 'Second Grade', 'Third Grade', 'Fourth Grade', 'Fifth Grade'].map((grade) => (
-                            <a href="#" class="flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:border-pta-gold hover:bg-yellow-50 text-pta-navy font-bold transition-colors text-center">
-                                {grade}
+                        {worksheets.map((item) => (
+                            <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center p-4 border-2 border-gray-200 rounded-xl hover:border-pta-gold hover:bg-yellow-50 text-pta-navy font-bold transition-colors text-center">
+                                {item.grade}
                             </a>
                         ))}
                     </div>
@@ -120,9 +140,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
                     <h2 class="text-3xl font-bold text-pta-navy mb-4 border-b-2 border-gray-100 pb-2">Answer Keys</h2>
                     
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        {['Kindergarten', '1st Grade', '2nd Grade', '3rd Grade', '4th Grade', '5th Grade'].map((grade) => (
-                            <a href="#" class="flex items-center justify-center p-4 border border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 text-blue-700 font-bold transition-colors text-center">
-                                {grade} Key
+                        {answerKeys.map((item) => (
+                            <a href={item.url} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center p-4 border border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 text-blue-700 font-bold transition-colors text-center">
+                                {item.grade} Key
                             </a>
                         ))}
                     </div>

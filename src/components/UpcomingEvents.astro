@@ -9,27 +9,32 @@ const privateKey = import.meta.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
 let events = [];
 
-// Helper to figure out if an informal date like "Oct 5-16" is in the past
+// Helper to figure out if a date is in the past
 function isFutureEvent(timingStr) {
-    // If there's no date or it's formatted too weirdly, show it just to be safe
     if (!timingStr) return true; 
     
-    // Grab the first month and number it sees (e.g., "Oct" and "5" from "Oct 5-16")
-    const match = timingStr.match(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d+)/i);
-    if (!match) return true; 
+    // Look for numeric date patterns like "8/17/26", "10/5", "10/1/2026", "Week of 9/28"
+    const match = timingStr.match(/(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/);
+    
+    if (!match) {
+        return true; 
+    }
 
-    const monthStr = match[1];
+    const monthIndex = parseInt(match[1], 10) - 1; 
     const day = parseInt(match[2], 10);
+    let year = match[3] ? parseInt(match[3], 10) : null;
     
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const monthIndex = months.findIndex(m => m.toLowerCase() === monthStr.toLowerCase());
+    if (year !== null && year < 100) {
+        year += 2000;
+    }
     
-    // School year logic: Aug-Dec is 2026, Jan-Jul is 2027
-    const year = monthIndex >= 7 ? 2026 : 2027; 
+    if (year === null) {
+        year = monthIndex >= 7 ? 2026 : 2027; 
+    }
     
     const eventDate = new Date(year, monthIndex, day);
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Strip time for a pure date comparison
+    today.setHours(0, 0, 0, 0); 
     
     return eventDate >= today;
 }
@@ -44,36 +49,50 @@ try {
     const doc = new GoogleSpreadsheet(sheetId, serviceAccountAuth);
     await doc.loadInfo(); 
     
-    const sheet = doc.sheetsByTitle['2026-27_FundRaising_Calendar']; 
+    const sheet = doc.sheetsByIndex[0]; 
     
     if (sheet) {
-        await sheet.loadCells('A1:A100'); 
         const rows = await sheet.getRows();
         
+        if (rows.length > 0) {
+            const maxRow = rows[rows.length - 1].rowNumber;
+            await sheet.loadCells(`A1:A${maxRow}`); 
+        }
+        
         events = rows.map((row) => {
-            const cell = sheet.getCell(row.rowNumber - 1, 0);
+            let cellColor = null;
             
-            let cellColor;
             try {
+                const cell = sheet.getCell(row.rowNumber - 1, 0);
                 cellColor = cell.backgroundColor;
             } catch (e) {
                 cellColor = null;
             }
             
-            if (!cellColor) {
+            if (!cellColor) return null;
+
+            // Google Sheets uses 0-1 values. Missing values mean 0.
+            const r = cellColor.red || 0;
+            const g = cellColor.green || 0;
+            const b = cellColor.blue || 0;
+            
+            const isWhite = r === 1 && g === 1 && b === 1;
+            const isYellow = r > 0.8 && g > 0.8 && b < 0.5; // High red + high green + low/no blue = yellow
+            
+            // Skip unapproved (white) and pending (yellow) rows
+            if (isWhite || isYellow) {
                 return null;
             }
             
             return {
-                timing: row.get('Timing'),
+                timing: row.get('Date'),
                 event: row.get('Event'),
-                connection: row.get('Giving Tree connection'),
-                merchandise: row.get('Merchandise '),
             };
         })
-        .filter(item => item !== null)              // 1. Drop unformatted cells
-        .filter(item => isFutureEvent(item.timing)) // 2. Drop past events
-        .slice(0, 3);                               // 3. Keep only the next 3!
+        .filter(item => item !== null)              
+        .filter(item => item.timing && item.event)  
+        .filter(item => isFutureEvent(item.timing)) 
+        .slice(0, 3);                               
     }
 
 } catch (error) {
@@ -100,14 +119,6 @@ try {
                     <h3 class="text-xl font-bold text-gray-800">
                         {item.event || 'Upcoming Event'}
                     </h3>
-                
-
-                    {item.merchandise && (
-                        <div class="mt-2 inline-flex items-center bg-white bg-opacity-60 rounded-md px-3 py-1 text-sm text-gray-700 border border-gray-200">
-                            <svg class="w-4 h-4 mr-2 text-pta-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                            {item.merchandise}
-                        </div>
-                    )}
                 </div>
                 
             </div>
