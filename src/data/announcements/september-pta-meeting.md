@@ -1,7 +1,7 @@
 ---
 title: "September PTA meeting"
 date: "2026-09-29"
-image: "septemberptaimage.png"
+image: "IMG-20260929-WA0000.jpg"
 ---
 Reminder — our Elsa England Elementary PTA General Meeting is TODAY!
 
