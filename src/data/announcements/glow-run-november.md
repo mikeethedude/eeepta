@@ -10,11 +10,9 @@ Registration is officially OPEN for the Elsa England Elementary PTA GLOW RUN!
 
 Join us Friday, November 13, for an exciting new twist on our annual Fun Run! Get ready for bright colors, glowing accessories, and plenty of Leopard spirit!
 
-Early Bird Pricing Through November 1:
+Pricing after November 1:
 
-- $2 – Registration
-- $10 – Registration + Glow Run T-Shirt
-- $20 – Registration + T-Shirt + Glow Package
+- $5 – Registration
 
 
 Don't wait! Take advantage of early bird pricing and get ready to LIGHT UP THE NIGHT!
