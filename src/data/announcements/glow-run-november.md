@@ -14,9 +14,6 @@ Pricing after November 1:
 
 - $5 – Registration
 
-
-Don't wait! Take advantage of early bird pricing and get ready to LIGHT UP THE NIGHT!
-
 Register Here:
 https://www.zeffy.com/en-US/ticketing/glow-run--2026-4
 
