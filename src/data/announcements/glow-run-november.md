@@ -1,6 +1,6 @@
 ---
 title: Glow run November 13th, 2026
-date: 11/02/2026
+date: 2026-11-01
 image: IMG-20261015-WA0000.jpg
 ---
 
