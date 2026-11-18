@@ -1,7 +1,7 @@
 ---
 // src/pages/about.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import defaultImage from '../../public/leopard_head.png'
+import defaultImage from '../../public/leopard_head.png';
 
 // 1. Fetch all markdown files using Vite's native glob
 const rawPosts = import.meta.glob('../data/team/*.md', { eager: true });
@@ -11,6 +11,9 @@ const allTeam = Object.values(rawPosts);
 const sortedTeam = allTeam.sort((a: any, b: any) => 
     (a.frontmatter.weight || 100) - (b.frontmatter.weight || 100)
 );
+
+// Helper to obfuscate strings at build time so bots don't see plain text in HTML
+const encode = (val?: string) => (val ? Buffer.from(val).toString('base64') : null);
 ---
 
 <BaseLayout>
@@ -31,54 +34,149 @@ const sortedTeam = allTeam.sort((a: any, b: any) =>
             <p class="text-lg text-gray-700 leading-relaxed mb-4">
                 <strong>Elsa England PTA (PTA TEXAS CONGRESS)</strong> is an independent, registered 501(c)(3) non-profit organization made up of dedicated parent and family volunteers.
             </p>
-          <p class="text-2xl font-semibold text-pta-navy leading-relaxed inline-block text-center mx-auto max-w-2xl mt-4">
+            <p class="text-2xl font-semibold text-pta-navy leading-relaxed inline-block text-center mx-auto max-w-2xl mt-4">
                 Our mission is to support the staff and students of Elsa England Elementary School by fostering a strong, welcoming community and creating meaningful opportunities for our Leopard families.
             </p>
         </div>
         
-        <!-- Switched to a Grid Layout -->
+        <!-- Grid Layout -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            {sortedTeam.map((post: any) => (
-                <article class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
-                    
-                    <!-- Profile Image (Uses frontmatter or falls back to default) -->
-                    <div class="w-32 h-32 mb-5 rounded-full overflow-hidden border-4 border-pta-navy bg-gray-50 flex-shrink-0 shadow-sm">
-                        <img 
-                            src={post.frontmatter.image || defaultImage.src} 
-                            alt={`Photo of ${post.frontmatter.title}`} 
-                            class="w-full h-full object-cover"
-                        />
-                    </div>
-                    
-                    <!-- Header pulled from Markdown Frontmatter -->
-                    <h2 class="text-2xl font-bold text-pta-navy mb-1">
-                        {post.frontmatter.title}
-                    </h2>
-                    <p class="text-pta-gold font-bold uppercase tracking-wider text-sm mb-6">
-                        {post.frontmatter.position}
-                    </p>
-                    
-                    <!-- The Hidden Bio -->
-                    <details class="w-full text-left group mt-auto">
-                        <!-- Summary is the clickable "button" -->
-                        <summary class="cursor-pointer font-bold text-blue-600 hover:text-pta-navy transition-colors list-none text-center outline-none flex justify-center items-center gap-1">
-                            <span>Read Bio</span>
-                            <!-- Chevron that flips when open -->
-                            <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </summary>
+            {sortedTeam.map((post: any) => {
+                const encodedEmail = encode(post.frontmatter.email);
+                const encodedPhone = encode(post.frontmatter.phone);
+                const hasContact = Boolean(encodedEmail || encodedPhone);
+
+                return (
+                    <article class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
                         
-                        <!-- The expanding content -->
-                        <div class="mt-4 pt-4 border-t border-gray-100 text-base text-gray-600 leading-relaxed 
-                                    [&>p]:mb-4 last:[&>p]:mb-0
-                                    [&_a]:text-blue-600 [&_a]:underline hover:[&_a]:text-blue-800">
-                            <post.default />
+                        <!-- Profile Image -->
+                        <div class="w-32 h-32 mb-5 rounded-full overflow-hidden border-4 border-pta-navy bg-gray-50 flex-shrink-0 shadow-sm">
+                            <img 
+                                src={post.frontmatter.image || defaultImage.src} 
+                                alt={`Photo of ${post.frontmatter.title}`} 
+                                class="w-full h-full object-cover"
+                            />
                         </div>
-                    </details>
-                    
-                </article>
-            ))}
+                        
+                        <!-- Header pulled from Markdown Frontmatter -->
+                        <h2 class="text-2xl font-bold text-pta-navy mb-1">
+                            {post.frontmatter.title}
+                        </h2>
+                        <p class={`text-pta-gold font-bold uppercase tracking-wider text-sm ${hasContact ? 'mb-3' : 'mb-6'}`}>
+                            {post.frontmatter.position}
+                        </p>
+
+                        <!-- Collapsed View: Contact Indicator Icons -->
+                        {hasContact && (
+                            <div class="flex items-center justify-center gap-2 mb-6" aria-label="Contact options available">
+                                {encodedEmail && (
+                                    <button 
+                                        type="button"
+                                        data-open-bio
+                                        title={`Email ${post.frontmatter.title}`}
+                                        class="w-8 h-8 rounded-full bg-gray-100 text-pta-navy hover:bg-pta-navy hover:text-white transition-colors flex items-center justify-center cursor-pointer"
+                                    >
+                                        <span class="sr-only">Show email address</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                )}
+                                {encodedPhone && (
+                                    <button 
+                                        type="button"
+                                        data-open-bio
+                                        title={`Call ${post.frontmatter.title}`}
+                                        class="w-8 h-8 rounded-full bg-gray-100 text-pta-navy hover:bg-pta-navy hover:text-white transition-colors flex items-center justify-center cursor-pointer"
+                                    >
+                                        <span class="sr-only">Show phone number</span>
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                        </svg>
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                        
+                        <!-- The Hidden Bio -->
+                        <details class="w-full text-left group mt-auto" data-bio-details>
+                            <summary class="cursor-pointer font-bold text-blue-600 hover:text-pta-navy transition-colors list-none text-center outline-none flex justify-center items-center gap-1">
+                                <span>Read Bio</span>
+                                <svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </summary>
+                            
+                            <!-- The expanding content -->
+                            <div class="mt-4 pt-4 border-t border-gray-100 text-base text-gray-600 leading-relaxed 
+                                        [&>p]:mb-4 last:[&>p]:mb-0
+                                        [&_a]:text-blue-600 [&_a]:underline hover:[&_a]:text-blue-800">
+                                <post.default />
+
+                                <!-- Expanded View: Decoded Contact Details -->
+                                {hasContact && (
+                                    <div class="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-2 text-sm">
+                                        {encodedEmail && (
+                                            <div class="flex items-center gap-2 text-pta-navy font-medium">
+                                                <svg class="w-4 h-4 flex-shrink-0 text-pta-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                                </svg>
+                                                <span data-contact-email={encodedEmail} class="break-all"></span>
+                                            </div>
+                                        )}
+                                        {encodedPhone && (
+                                            <div class="flex items-center gap-2 text-pta-navy font-medium">
+                                                <svg class="w-4 h-4 flex-shrink-0 text-pta-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                                </svg>
+                                                <span data-contact-phone={encodedPhone}></span>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </details>
+                        
+                    </article>
+                );
+            })}
 
         </div>
     </div>
 </BaseLayout>
+
+<script>
+    // Decode contact details only when a user opens a bio card
+    document.querySelectorAll<HTMLDetailsElement>('[data-bio-details]').forEach((details) => {
+        details.addEventListener('toggle', () => {
+            if (!details.open) return;
+
+            const emailSlot = details.querySelector<HTMLElement>('[data-contact-email]');
+            if (emailSlot && !emailSlot.dataset.decoded) {
+                const email = atob(emailSlot.dataset.contactEmail || '');
+                emailSlot.innerHTML = `<a href="mailto:${email}" class="no-underline hover:underline text-pta-navy">${email}</a>`;
+                emailSlot.dataset.decoded = 'true';
+            }
+
+            const phoneSlot = details.querySelector<HTMLElement>('[data-contact-phone]');
+            if (phoneSlot && !phoneSlot.dataset.decoded) {
+                const phone = atob(phoneSlot.dataset.contactPhone || '');
+                const cleanPhone = phone.replace(/[^+\d]/g, '');
+                phoneSlot.innerHTML = `<a href="tel:${cleanPhone}" class="no-underline hover:underline text-pta-navy">${phone}</a>`;
+                phoneSlot.dataset.decoded = 'true';
+            }
+        });
+    });
+
+    // Clicking the badge icons on the collapsed card opens the bio drawer
+    document.querySelectorAll<HTMLButtonElement>('[data-open-bio]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const card = btn.closest('article');
+            const details = card?.querySelector<HTMLDetailsElement>('[data-bio-details]');
+            if (details) {
+                details.open = true;
+            }
+        });
+    });
+</script>
