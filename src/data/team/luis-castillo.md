@@ -2,6 +2,8 @@
 title: Luis Castillo
 position: President
 image: luis-castillo.jpeg
+email: englandptapresident@gmail.com
+phone: (512) 415-5765
 weight: 1
 ---
 
