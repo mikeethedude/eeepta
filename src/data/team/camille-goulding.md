@@ -2,6 +2,7 @@
 title: Camille Goulding
 position: Vice President
 image: camillegoulding.jpg
+email: englandptavp@gmail.com
 weight: 2
 ---
 
